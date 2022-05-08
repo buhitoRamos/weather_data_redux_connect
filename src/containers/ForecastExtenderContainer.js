@@ -7,11 +7,12 @@ import { connect } from 'react-redux'
    propTypes = {city: PropTypes.string.isRequired,}
 
      render() {
+         const {city, forecastData} = this.props
          return (
-
-             <ForecastExtended city={this.props.city} />
+                city&&
+             <ForecastExtended city={city} forecastData={forecastData}/>
          )
      }
  }
-const mapStateToProps =  ({city}) => ({city});
+const mapStateToProps =  ({city, cities}) => ({city, forecastData: cities[city] && cities[city].forecastData});
 export default connect(mapStateToProps, null)(ForecastExtenderContainer);
